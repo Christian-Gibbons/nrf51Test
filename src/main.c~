@@ -1,0 +1,25 @@
+#include "simple_uart.h"
+#include "board.h"
+#include "nrf_delay.h"
+#include "nrf_gpio.h"
+#include "nrf.h"
+#include "clock.h"
+
+int main(void)
+{
+    nrf_gpio_cfg_output(LED_RGB_RED);
+    nrf_gpio_pin_set(LED_RGB_RED);
+    nrf_gpio_cfg_output(LED_RGB_GREEN);
+    nrf_gpio_pin_clear(LED_RGB_GREEN);
+    nrf_gpio_cfg_output(LED_RGB_BLUE);
+    nrf_gpio_pin_set(LED_RGB_BLUE);
+
+    simple_uart_config(RTS_PIN_NUMBER, TX_PIN_NUMBER, CTS_PIN_NUMBER, RX_PIN_NUMBER, UART_BAUDRATE_BAUDRATE_Baud115200, 12, HWFC);
+    simple_uart_putstring((const uint8_t *)" \r\nStart:\r\n");
+
+    while(true) {
+    			__WFI();
+
+    }
+}
+
